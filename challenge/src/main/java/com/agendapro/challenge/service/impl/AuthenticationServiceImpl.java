@@ -9,6 +9,8 @@ import com.agendapro.challenge.repository.UserRepository;
 import com.agendapro.challenge.service.AuthenticationService;
 import com.agendapro.challenge.service.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,8 +25,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    private final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
+
     @Override
     public JwtAuthenticationResponse signup(SignUpRequest request){
+        LOGGER.debug("Starting Signup request: {}", request);
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER).build();
@@ -34,16 +39,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         userRepository.save(user);
         var jwt = jwtService.generateToken(user);
+        LOGGER.debug("FINISHED Signup request");
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
     @Override
     public JwtAuthenticationResponse signin(SigninRequest request) {
+        LOGGER.debug("Starting Signin request: {}", request);
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
         var jwt = jwtService.generateToken(user);
+        LOGGER.debug("JWT generated: {}", jwt);
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 }

@@ -59,3 +59,4 @@ jobs:
       - name: Run docker container
         working-directory: ./challenge/
         run: sudo docker run -d -p 8080:8080 --name juansotoa-challengeagendapro-container juansotoa/challengeagendapro
+
