@@ -34,65 +34,28 @@ jobs:
           cache: maven
       - name: Build app
         working-directory: ./challenge/
-        run: mvn clean package -DskipTests
+        run: mvn clean install -DskipTests
       - name: Login to docker hub
         working-directory: ./challenge/
-        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
-      - name: Build and publish docker compose
+        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
+      - name: Build docker image
         working-directory: ./challenge/
-        run: sudo docker compose build java_app
-#      - name: Login to docker hub
-#        working-directory: ./challenge/
-#        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
-#      - name: Build docker image
-#        working-directory: ./challenge/
-#        run: docker build -t juansotoa/challengeagendapro .
-      - name: Publish docker compose
+        run: docker build -t juansotoa/challengeagendapro .
+      - name: Publish image to docker hub
         working-directory: ./challenge/
-        run: sudo docker compose push juansotoa/challengeagendapro
-        
-#  deploy:
-#    needs: build
-#    name: Deploy to aws-ec2
-#    runs-on: self-hosted
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Pull Image from docker hub
-#        working-directory: ./challenge/
-#        run: sudo docker pull juansotoa/challengeagendapro:latest
-#      - name: Delete old container
-#        working-directory: ./challenge/
-#        run: sudo docker rm -f juansotoa-challengeagendapro-container
-#      - name: Run docker container
-#        working-directory: ./challenge/
-#        run: sudo docker run -d -p 8080:8080 --name juansotoa-challengeagendapro-container juansotoa/challengeagendapro
-# para crear jar
-#      - uses: actions/checkout@v4
-#      - name: Set up JDK 17
-#        uses: actions/setup-java@v4
-#        with:
-#          java-version: '17'
-#          distribution: 'temurin'
-#          cache: maven
-#      - name: Build app
-#        working-directory: ./challenge/
-#        run: mvn -B package -DskipTests --file pom.xml
-#      - name: Upload JAR
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: artifact
-#          path: challenge/target/challenge-0.0.1-SNAPSHOT.jar
-#  deploy:
-#    needs: build
-#    name: Deploy
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Download JAR
-#        uses: actions/download-artifact@v4
-#        with:
-#          name: artifact
-#      - name: Deploy to EBS
-#        uses: einaregilsson/beanstalk-deploy@v13
-#        with:
-#          aws_access_key:${{secrets.AWS_ACCESS_KEY}}
-#          aws_secret_key:${{secrets.AWS_SECRET_ACCESS_KEY}}
+        run: docker push juansotoa/challengeagendapro:latest
+  deploy:
+    needs: build
+    name: Deploy to aws-ec2
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull Image from docker hub
+        working-directory: ./challenge/
+        run: sudo docker pull juansotoa/challengeagendapro:latest
+      - name: Delete old container
+        working-directory: ./challenge/
+        run: sudo docker rm -f juansotoa-challengeagendapro-container
+      - name: Run docker container
+        working-directory: ./challenge/
+        run: sudo docker run -d -p 8080:8080 --name juansotoa-challengeagendapro-container juansotoa/challengeagendapro
