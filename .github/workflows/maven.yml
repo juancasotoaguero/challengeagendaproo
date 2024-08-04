@@ -49,7 +49,7 @@ jobs:
 #        run: docker build -t juansotoa/challengeagendapro .
       - name: Publish docker compose
         working-directory: ./challenge/
-        run: docker-compose push
+        run: docker compose push
         
 #  deploy:
 #    needs: build
