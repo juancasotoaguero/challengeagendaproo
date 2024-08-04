@@ -29,7 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signup(SignUpRequest request){
-        LOGGER.debug("Starting Signup request: {}", request);
+        LOGGER.info("Starting Signup request: {}", request);
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName())
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER).build();
@@ -39,19 +39,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         userRepository.save(user);
         var jwt = jwtService.generateToken(user);
-        LOGGER.debug("FINISHED Signup request");
+        LOGGER.info("FINISHED Signup request");
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
     @Override
     public JwtAuthenticationResponse signin(SigninRequest request) {
-        LOGGER.debug("Starting Signin request: {}", request);
+        LOGGER.info("Starting Signin request: {}", request);
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
         var jwt = jwtService.generateToken(user);
-        LOGGER.debug("JWT generated: {}", jwt);
+        LOGGER.info("JWT generated: {}", jwt);
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 }
