@@ -37,19 +37,19 @@ jobs:
         run: mvn clean package -DskipTests
       - name: Login to docker hub
         working-directory: ./challenge/
-        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
+        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build and publish docker compose
         working-directory: ./challenge/
-        run: sudo docker compose build java_app --push
+        run: sudo docker compose build java_app
 #      - name: Login to docker hub
 #        working-directory: ./challenge/
 #        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
 #      - name: Build docker image
 #        working-directory: ./challenge/
 #        run: docker build -t juansotoa/challengeagendapro .
-#      - name: Publish docker compose
-#        working-directory: ./challenge/
-#        run: sudo docker compose push
+      - name: Publish docker compose
+        working-directory: ./challenge/
+        run: sudo docker compose push juansotoa/challengeagendapro
         
 #  deploy:
 #    needs: build
