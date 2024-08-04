@@ -1,4 +1,4 @@
-name: Spring boot agendaProChallenge
+name: Spring boot agendaProChallenge 
 
 on:
   push:
@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-      - name: Run tests
-        working-directory: ./challenge/
-        run: mvn -B test
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run tests
+      working-directory: ./challenge/
+      run: mvn -B test
   build:
     needs: tests
     name: Build
