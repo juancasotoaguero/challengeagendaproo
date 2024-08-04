@@ -40,7 +40,7 @@ jobs:
         run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
       - name: Build docker compose
         working-directory: ./challenge/
-        run: sudo docker-compose build java_app
+        run: sudo docker compose build java_app
 #      - name: Login to docker hub
 #        working-directory: ./challenge/
 #        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
