@@ -38,18 +38,18 @@ jobs:
       - name: Login to docker hub
         working-directory: ./challenge/
         run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
-      - name: Build docker compose
+      - name: Build and publish docker compose
         working-directory: ./challenge/
-        run: sudo docker compose build java_app
+        run: sudo docker compose build java_app --push
 #      - name: Login to docker hub
 #        working-directory: ./challenge/
 #        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}} docker.io
 #      - name: Build docker image
 #        working-directory: ./challenge/
 #        run: docker build -t juansotoa/challengeagendapro .
-      - name: Publish docker compose
-        working-directory: ./challenge/
-        run: sudo docker compose push
+#      - name: Publish docker compose
+#        working-directory: ./challenge/
+#        run: sudo docker compose push
         
 #  deploy:
 #    needs: build
