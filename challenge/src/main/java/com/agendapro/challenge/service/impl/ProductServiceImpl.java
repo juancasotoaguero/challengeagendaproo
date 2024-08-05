@@ -27,12 +27,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse create(CreateUpdateProductRequest productDto) {
 
-        LOGGER.debug("-----Start creating product-------");
+        LOGGER.info("-----Start creating product-------");
 
         Product product = ProductMapper.mapToProductCreate(productDto);
         product.setStatus("A");
         Product productCreated = productRepository.save(product);
-        LOGGER.debug("-----End creating product-------");
+        LOGGER.info("-----End creating product-------");
         return ProductMapper.mapToProductResponse(productCreated);
     }
 

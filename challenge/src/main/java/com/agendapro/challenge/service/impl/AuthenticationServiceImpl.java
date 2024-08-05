@@ -25,7 +25,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    private final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(AuthenticationServiceImpl.class);
 
     @Override
     public JwtAuthenticationResponse signup(SignUpRequest request){

@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     @PostMapping("/signup")
-    public ResponseEntity<Object> signup(@RequestBody SignUpRequest request){
+    public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpRequest request){
         JwtAuthenticationResponse response = authenticationService.signup(request);
         if (response.getToken() == null) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();

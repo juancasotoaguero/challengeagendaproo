@@ -21,10 +21,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/signup",
+					"raw": "http://18.118.254.207:8080/api/v1/auth/signup",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
@@ -57,7 +60,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuY2Fzb3RvYTAxOTNAZ21haWwuY29tIiwiaWF0IjoxNzIyNzEyNzI4LCJleHAiOjE3MjI3MTQxNjh9.1t6gbhcPG3Ly_i9MNDbi-sssevOuamswCTl5GqNPttg",
+							"value": "",
 							"type": "string"
 						}
 					]
@@ -74,10 +77,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/signin",
+					"raw": "http://18.118.254.207:8080/api/v1/auth/signin",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
@@ -110,7 +116,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuY2Fzb3RvYTAxOTNAZ21haWwuY29tIiwiaWF0IjoxNzIyNzEwNDE3LCJleHAiOjE3MjI3MTE4NTd9.YkklIHp85fanLszRAr7nsGaGyp9L7-m0ofVz71TUJAg",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuY2Fzb3RvYTAxOTNAZ21haWwuY29tIiwiaWF0IjoxNzIyODE1NTA3LCJleHAiOjE3MjI4MTY5NDd9.Hk2Gw2AM-0Se9FMZ6VkvWwYTni4x0dvaQULtHcMTCTw",
 							"type": "string"
 						}
 					]
@@ -127,10 +133,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/product",
+					"raw": "http://18.118.254.207:8080/api/v1/product",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
@@ -150,7 +159,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuY2Fzb3RvYTAxOTNAZ21haWwuY29tIiwiaWF0IjoxNzIyNzEwNDE3LCJleHAiOjE3MjI3MTE4NTd9.YkklIHp85fanLszRAr7nsGaGyp9L7-m0ofVz71TUJAg",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuY2Fzb3RvYTAxOTNAZ21haWwuY29tIiwiaWF0IjoxNzIyODExNjcxLCJleHAiOjE3MjI4MTMxMTF9.nhWOORlOt9ztWKxLb_NrTz2HrU2SdtRB4IXklVoyCnY",
 							"type": "string"
 						}
 					]
@@ -165,10 +174,13 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/product",
+					"raw": "http://18.118.254.207:8080/api/v1/product",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
@@ -203,10 +215,13 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/product/byName?name=7000",
+					"raw": "http://18.118.254.207:8080/api/v1/product/byName?name=7000",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
@@ -248,10 +263,13 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/product/1",
+					"raw": "http://18.118.254.207:8080/api/v1/product/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
@@ -301,10 +319,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/product/3",
+					"raw": "http://18.118.254.207:8080/api/v1/product/3",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
@@ -333,10 +354,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/product/3",
+					"raw": "http://18.118.254.207:8080/api/v1/product/3",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"18",
+						"118",
+						"254",
+						"207"
 					],
 					"port": "8080",
 					"path": [
