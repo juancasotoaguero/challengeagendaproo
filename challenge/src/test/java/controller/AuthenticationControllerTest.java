@@ -10,50 +10,61 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthenticationControllerTest {
 
-    @InjectMocks
-    private AuthenticationController authenticationController;
-
     @Mock
     private AuthenticationService authenticationService;
 
+    @InjectMocks
+    private AuthenticationController authenticationController;
+
+    private SignUpRequest signUpRequest;
+    private SigninRequest signinRequest;
+    private JwtAuthenticationResponse jwtAuthenticationResponse;
+
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    void setUp() {
+        signUpRequest = new SignUpRequest();
+        signinRequest = new SigninRequest();
+        jwtAuthenticationResponse = new JwtAuthenticationResponse();
     }
 
     @Test
-    public void testSignup() {
-        SignUpRequest signUpRequest = new SignUpRequest("name", "lastName", "email", "password");
-        JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse("token");
-
-        when(authenticationService.signup(signUpRequest)).thenReturn(jwtAuthenticationResponse);
+    void testSignup() {
+        jwtAuthenticationResponse.setToken("adlksjdlaj");
+        when(authenticationService.signup(any(SignUpRequest.class))).thenReturn(jwtAuthenticationResponse);
 
         ResponseEntity<JwtAuthenticationResponse> responseEntity = authenticationController.signup(signUpRequest);
 
-        assertEquals(200, responseEntity.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(jwtAuthenticationResponse, responseEntity.getBody());
     }
 
     @Test
-    public void testSignin() {
-        SigninRequest signinRequest = new SigninRequest("username", "password");
-        JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse("token");
+    void testSignupNotAcceptable() {
+        jwtAuthenticationResponse.setToken(null);
+        when(authenticationService.signup(any(SignUpRequest.class))).thenReturn(jwtAuthenticationResponse);
 
-        when(authenticationService.signin(signinRequest)).thenReturn(jwtAuthenticationResponse);
+        ResponseEntity<JwtAuthenticationResponse> responseEntity = authenticationController.signup(signUpRequest);
+
+        assertEquals(HttpStatus.NOT_ACCEPTABLE, responseEntity.getStatusCode());
+    }
+
+    @Test
+    void testSignin() {
+        when(authenticationService.signin(any(SigninRequest.class))).thenReturn(jwtAuthenticationResponse);
 
         ResponseEntity<JwtAuthenticationResponse> responseEntity = authenticationController.signin(signinRequest);
 
-        assertEquals(200, responseEntity.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(jwtAuthenticationResponse, responseEntity.getBody());
     }
 }

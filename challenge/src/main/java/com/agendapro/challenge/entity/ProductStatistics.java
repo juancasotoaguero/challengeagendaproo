@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_category_by_product")
-public class CategoryByProduct {
+@Table(name = "_product_statistics")
+public class ProductStatistics {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String category;
-    private String quantity;
+    private String statistic;
+    private Integer quantity;
     private String status;
 
     public Integer getId() {
@@ -38,19 +38,19 @@ public class CategoryByProduct {
         this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+    public String getStatistic() {
+        return statistic;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setStatistic(String statistic) {
+        this.statistic = statistic;
     }
 
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

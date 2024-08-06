@@ -13,4 +13,13 @@ public class CreateUpdateProductRequest {
     private String name;
     private String description ;
     private String category;
+
+    @Override
+    public String toString() {
+        return "CreateUpdateProductRequest{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
