@@ -26,28 +26,34 @@ DELETE:/api/v1/product/{id} = Eliminar un producto
 
 2- Spring boot 3.3.2
 
-3- RabbitMQ : https://www.rabbitmq.com/docs/download
+3- Docker
+
+4- RabbitMQ : https://www.rabbitmq.com/docs/download
 
 # Instalación, ejecución y pruebas 
 1- Clonar repositorio
 
 2- Abrir la terminal en la raiz del proyecto dentro de ./challenge
 
-3- Compilar el proyecto :  ./mvnw clean install (windows) ó mvn clean install
+3- Levantar servidor rabbitmq con el siquiente comando:
 
-4- Ejecutar el proyecto :  ./mvnw spring-boot:run (windows) ó mvn spring-boot:run  por defecto la app se ejecuta en el puerto 8080
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13-management
 
-5- Abrir el archivo de la coleccion para postman que se encuentra en esta ubicación https://github.com/juancasotoaguero/challengeagendaproo/tree/develop/Postman  el archivo : 
+4- Abrir otra ventana de la terminar y compilar el proyecto :  ./mvnw clean install (windows) ó mvn clean install
+
+5- Ejecutar el proyecto :  ./mvnw spring-boot:run (windows) ó mvn spring-boot:run  por defecto la app se ejecuta en el puerto 8080
+
+6- Abrir el archivo de la coleccion para postman que se encuentra en esta ubicación https://github.com/juancasotoaguero/challengeagendaproo/tree/develop/Postman  el archivo : 
 
 apiChallengeAgendaPro.postman_collection.json 
 
 Este ya tiene los endpoint configurados para ejecutar localmente 
 ![image](https://github.com/user-attachments/assets/f7a84362-062c-4320-a89d-4e13bf9ccd3c)
 
-6-Los endpoints se encuentran ordenados, primeramente para crear usuario y luego para iniciar sesión, resaltado amarillo y los demás endpoints en recuadro rojo, deben tener autenticación.
+7-Los endpoints se encuentran ordenados, primeramente para crear usuario y luego para iniciar sesión, resaltado amarillo y los demás endpoints en recuadro rojo, deben tener autenticación.
 ![image](https://github.com/user-attachments/assets/06d39637-f3cf-45ee-8365-cc3fd9acda1b)
 
-7- La autenticacion se realiza copiando el token generado en el endpoint signin en la sección de Authorization Bearer Token.
+8- La autenticacion se realiza copiando el token generado en el endpoint signin en la sección de Authorization Bearer Token.
 
 ![image](https://github.com/user-attachments/assets/6af75881-65f9-44f4-a813-ae74ff160cd3)
 ![image](https://github.com/user-attachments/assets/95d0782b-f6ae-43c0-9e93-23d305232895)
