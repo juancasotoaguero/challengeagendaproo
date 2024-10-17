@@ -1,6 +1,6 @@
-# Proyecto : challengeagendaproo
+# Proyecto : rabbitMq example
 
-Es una aplicación hecha en java con spring boot que sigue los requisitos mandados en el desafio de AgendaPro, usa RabbitMq como broker para uno de los flujos. Dentro del repositorio se encuentra definido un pipeline para ejecucion de los tests unitarios y despliegue continuo a aws cuando se realicen push a la rama Master.
+Es una aplicación hecha en java con spring boot, usa RabbitMq como broker para uno de los flujos. Dentro del repositorio se encuentra definido un pipeline para ejecucion de los tests unitarios y despliegue continuo a aws cuando se realicen push a la rama Master.
 
 # Apis disponibles 
 POST:  /api/v1/auth/signup = Crear usuario
